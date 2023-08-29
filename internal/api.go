@@ -31,4 +31,8 @@ func (api *API) setupRouter() {
 		return api.C.GetSub(c)
 	})
 
+	api.App.Get("/ping", func(c *fiber.Ctx) error {
+		return c.SendString("pong")
+	})
+
 }

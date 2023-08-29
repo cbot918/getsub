@@ -18,5 +18,5 @@ func main() {
 	f := fiber.New()
 	api := i.NewAPI(cfg, f)
 
-	log.Fatal(api.App.Listen(":8082"))
+	log.Fatal(api.App.Listen(":8080"))
 }
