@@ -61,6 +61,7 @@ func (ctr *Controller) GetSub(c *fiber.Ctx) error {
 	oldUrl := c.Queries()["url"]
 	name, err := download(oldUrl)
 	if err != nil {
+		fmt.Println("download error")
 		return err
 	}
 
