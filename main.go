@@ -10,13 +10,13 @@ import (
 
 func main() {
 
-	cfg, err := i.NewConfig()
-	if err != nil {
-		log.Fatal(err)
-	}
-
+	// cfg, err := i.NewConfig()
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	cfg := &i.Config{}
 	f := fiber.New()
 	api := i.NewAPI(cfg, f)
 
-	log.Fatal(api.App.Listen(cfg.PORT))
+	log.Fatal(api.App.Listen(":8082"))
 }
