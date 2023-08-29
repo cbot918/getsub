@@ -1,6 +1,8 @@
 package internal
 
 import (
+	"fmt"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
@@ -36,6 +38,7 @@ func (api *API) setupRouter() {
 	})
 
 	api.App.Get("/ping", func(c *fiber.Ctx) error {
+		fmt.Println("in /ping")
 		return c.SendString("pong")
 	})
 
