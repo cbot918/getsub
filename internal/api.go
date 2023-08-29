@@ -27,11 +27,11 @@ func NewAPI(cfg *Config, app *fiber.App) *API {
 
 func (api *API) setupRouter() {
 
-	api.App.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("home")
-	})
+	// api.App.Get("/", func(c *fiber.Ctx) error {
+	// 	return c.SendString("home")
+	// })
 
-	api.App.Get("/url/:url", func(c *fiber.Ctx) error {
+	api.App.Get("/", func(c *fiber.Ctx) error {
 		return api.C.GetSub(c)
 	})
 

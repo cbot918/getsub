@@ -28,12 +28,18 @@ func download(oldUrl string) (string, error) {
 	folderName := strings.Trim(regexp.MustCompile(`/trunk/(.*)$`).FindString(newUrl), "/trunk/")
 
 	cmd := cmdy.New()
+	cmd0 := fmt.Sprintf("apk add subversion ")
 	cmd1 := fmt.Sprintf("svn checkout %s", newUrl)
 	cmd2 := fmt.Sprintf("tar -cvf %s.tar %s", folderName, folderName)
 	cmd3 := fmt.Sprintf("mv %s.tar files", folderName)
 	cmd4 := fmt.Sprintf("rm -rf %s", folderName)
 
-	err := cmd.Run([]string{cmd1})
+	err := cmd.Run([]string{cmd0})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = cmd.Run([]string{cmd1})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -57,8 +63,9 @@ func download(oldUrl string) (string, error) {
 }
 
 func (ctr *Controller) GetSub(c *fiber.Ctx) error {
-	oldUrl := c.Params("url")
-	// oldUrl := c.Queries()["url"]
+	// oldUrl := c.Params("u")
+	oldUrl := c.Queries()["url"]
+
 	name, err := download(oldUrl)
 	if err != nil {
 		fmt.Println("download error")
